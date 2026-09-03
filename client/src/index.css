@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --bg: #0a0e1a;
+  --surface: #121829;
+  --surface-2: #1a2338;
+  --border: #2a3654;
+  --text: #e7ebf5;
+  --muted: #8b96b3;
+  --accent: #7c5cff;
+  --accent-2: #22d3ee;
+  --success: #22c55e;
+  --danger: #f0475a;
+  --warning: #f5a623;
+  --py: #3776ab;
+  --js: #f0d626;
+  --cs: #9b4f96;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(124, 92, 255, 0.15), transparent),
+    radial-gradient(1000px 500px at 110% 10%, rgba(34, 211, 238, 0.1), transparent),
+    var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+.font-mono-code {
+  font-family: "Cascadia Code", "Fira Code", ui-monospace, Consolas, monospace;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(124, 92, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(124, 92, 255, 0);
+  }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-float-in {
+  animation: float-in 0.4s ease-out both;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-pop {
+  animation: pop 0.35s ease-out both;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.shimmer {
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
