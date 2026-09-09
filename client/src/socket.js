@@ -4,7 +4,10 @@ let socket;
 
 export function getSocket() {
   if (!socket) {
-    socket = io("/", { autoConnect: true, transports: ["websocket", "polling"] });
+    socket = io(import.meta.env.VITE_API_URL || "/", {
+      autoConnect: true,
+      transports: ["websocket", "polling"],
+    });
   }
   return socket;
 }
