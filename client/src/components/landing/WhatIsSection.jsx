@@ -1,19 +1,18 @@
-import { Terminal, Zap, TrendingUp } from "lucide-react";
 import Reveal, { RevealGroup, RevealItem } from "./Reveal";
 
 const POINTS = [
   {
-    icon: Terminal,
+    n: "01",
     title: "Prática, não slide",
     text: "Sem vídeo-aula passiva: você escreve código real desde o primeiro minuto.",
   },
   {
-    icon: Zap,
+    n: "02",
     title: "Feedback instantâneo",
     text: "Seu código roda de verdade contra os testes do exercício — sem enrolação.",
   },
   {
-    icon: TrendingUp,
+    n: "03",
     title: "Progresso visível",
     text: "XP, níveis e dificuldade crescente em Python, JavaScript e C#.",
   },
@@ -21,39 +20,33 @@ const POINTS = [
 
 export default function WhatIsSection() {
   return (
-    <section id="o-que-e" className="py-24 sm:py-32">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        <div className="max-w-2xl">
+    <section id="o-que-e" className="py-20 sm:py-28 border-b border-[var(--border)]">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-[0.8fr_1.2fr] gap-14">
+        <div>
           <Reveal>
-            <span className="font-mono text-xs text-[var(--accent-2)] uppercase tracking-widest">
-              O que é
-            </span>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h2 className="font-display font-semibold text-3xl sm:text-4xl tracking-tight mt-3">
+            <h2 className="font-display font-semibold text-3xl sm:text-4xl tracking-tight leading-tight">
               Uma plataforma pra quem quer aprender programando.
             </h2>
           </Reveal>
-          <Reveal delay={0.1}>
+          <Reveal delay={0.08}>
             <p className="mt-5 text-[var(--muted)] text-lg">
-              DevCore troca a teoria arrastada por exercícios curtos e diretos, com
-              execução real de código no navegador. Você erra, ajusta, roda de novo —
-              é assim que se aprende a programar.
+              DevCore troca a teoria arrastada por exercícios curtos e diretos,
+              com execução real de código no navegador.
             </p>
           </Reveal>
         </div>
 
-        <RevealGroup className="grid sm:grid-cols-3 gap-6 mt-16">
-          {POINTS.map(({ icon: Icon, title, text }) => (
+        <RevealGroup className="flex flex-col">
+          {POINTS.map(({ n, title, text }, i) => (
             <RevealItem
-              key={title}
-              className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 hover:border-[var(--accent)]/50 hover:-translate-y-1 transition-all duration-300"
+              key={n}
+              className={`flex items-baseline gap-6 py-6 ${i !== 0 ? "border-t border-[var(--border)]" : ""}`}
             >
-              <div className="w-10 h-10 rounded-xl bg-[var(--accent-soft)] flex items-center justify-center text-[var(--accent)]">
-                <Icon size={20} />
+              <span className="font-display text-sm text-[var(--muted)] shrink-0">{n}</span>
+              <div>
+                <h3 className="font-semibold text-lg">{title}</h3>
+                <p className="text-[var(--muted)] mt-1.5 leading-relaxed">{text}</p>
               </div>
-              <h3 className="font-semibold mt-4">{title}</h3>
-              <p className="text-sm text-[var(--muted)] mt-1.5 leading-relaxed">{text}</p>
             </RevealItem>
           ))}
         </RevealGroup>

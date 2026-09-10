@@ -1,4 +1,3 @@
-import { CircleCheck } from "lucide-react";
 import Reveal from "./Reveal";
 import Parallax from "./Parallax";
 import ExercisePreviewMock from "./ExercisePreviewMock";
@@ -11,38 +10,37 @@ const BULLETS = [
 
 export default function ExercisesSection() {
   return (
-    <section id="exercicios" className="py-24 sm:py-32 border-t border-[var(--border)]">
+    <section id="exercicios" className="py-20 sm:py-28 border-b border-[var(--border)]">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-16 items-center">
         <div>
           <Reveal>
-            <span className="font-mono text-xs text-[var(--accent-2)] uppercase tracking-widest">
-              Modo Aprendizado
-            </span>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h2 className="font-display font-semibold text-3xl sm:text-4xl tracking-tight mt-3">
+            <h2 className="font-display font-semibold text-3xl sm:text-4xl tracking-tight">
               Exercícios que treinam lógica de verdade.
             </h2>
           </Reveal>
-          <Reveal delay={0.1}>
+          <Reveal delay={0.06}>
             <p className="mt-5 text-[var(--muted)] text-lg">
               Escolha uma linguagem, escolha um nível, e resolva. Cada desafio roda
               seu código contra casos de teste reais — sem gabarito escondido.
             </p>
           </Reveal>
 
-          <ul className="mt-8 flex flex-col gap-3.5">
+          <ul className="mt-8 flex flex-col">
             {BULLETS.map((text, i) => (
-              <Reveal key={text} delay={0.15 + i * 0.05} as="li" className="flex items-start gap-3 text-sm">
-                <CircleCheck size={18} className="text-[var(--accent)] shrink-0 mt-0.5" />
-                <span className="text-[var(--text)]">{text}</span>
+              <Reveal
+                key={text}
+                delay={0.1 + i * 0.05}
+                as="li"
+                className={`py-3.5 text-[15px] ${i !== 0 ? "border-t border-[var(--border)]" : ""}`}
+              >
+                {text}
               </Reveal>
             ))}
           </ul>
         </div>
 
-        <Parallax range={24}>
-          <Reveal delay={0.1} y={32}>
+        <Parallax range={20}>
+          <Reveal delay={0.1} y={24}>
             <ExercisePreviewMock />
           </Reveal>
         </Parallax>

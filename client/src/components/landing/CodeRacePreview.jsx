@@ -17,17 +17,17 @@ function Panel({ name, linesShown, done, isWinner, accent }) {
   const pct = Math.round((linesShown / TOTAL_LINES) * 100);
   return (
     <div
-      className="relative flex-1 min-w-0 rounded-2xl border bg-[var(--surface)] overflow-hidden transition-colors duration-500"
-      style={{ borderColor: isWinner ? accent : "var(--border)" }}
+      className="editor-chrome relative flex-1 min-w-0 rounded-xl border bg-[var(--ed-bg)] overflow-hidden transition-colors duration-500"
+      style={{ borderColor: isWinner ? accent : "var(--ed-border)" }}
     >
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border)]">
-        <span className="text-sm font-medium">{name}</span>
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--ed-border)]">
+        <span className="text-sm font-medium text-[var(--ed-text)]">{name}</span>
         {isWinner && (
           <motion.span
-            initial={{ scale: 0, rotate: -20 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 14 }}
-            className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded-full"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 300, damping: 16 }}
+            className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded-md"
             style={{ background: `${accent}26`, color: accent }}
           >
             <Crown size={12} />
@@ -44,12 +44,12 @@ function Panel({ name, linesShown, done, isWinner, accent }) {
                 key={j}
                 className={
                   tok.c === "cm"
-                    ? "text-[var(--muted)]"
+                    ? "text-[var(--ed-muted)]"
                     : tok.c === "kw"
-                      ? "text-[var(--accent)]"
+                      ? "text-[var(--ed-accent)]"
                       : tok.c === "fn"
-                        ? "text-[var(--accent-2)]"
-                        : "text-[var(--text)]"
+                        ? "text-[var(--ed-accent-2)]"
+                        : "text-[var(--ed-text)]"
                 }
               >
                 {tok.v}
@@ -57,10 +57,10 @@ function Panel({ name, linesShown, done, isWinner, accent }) {
             ))}
           </div>
         ))}
-        {!done && <span className="inline-block w-1.5 h-4 bg-[var(--text)] animate-pulse align-middle" />}
+        {!done && <span className="inline-block w-1.5 h-4 bg-[var(--ed-text)] animate-pulse align-middle" />}
       </pre>
 
-      <div className="h-1 bg-[var(--surface-2)]">
+      <div className="h-1 bg-[var(--ed-surface-2)]">
         <motion.div
           className="h-full"
           style={{ background: accent }}
@@ -110,16 +110,16 @@ export default function CodeRacePreview() {
 
   return (
     <div className="relative">
-      <div className="flex flex-col sm:flex-row gap-5 sm:gap-0">
-        <Panel name="Jogador 1" linesShown={linesA} done={doneA} isWinner={winner === "a"} accent="var(--accent)" />
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-0">
+        <Panel name="Jogador 1" linesShown={linesA} done={doneA} isWinner={winner === "a"} accent="#4f5bff" />
 
-        <div className="hidden sm:flex items-center justify-center w-16 shrink-0 relative z-10">
-          <div className="w-10 h-10 rounded-full bg-[var(--bg)] border border-[var(--border)] flex items-center justify-center text-xs font-mono text-[var(--accent-2)] font-semibold animate-pulse-glow">
-            VS
+        <div className="hidden sm:flex items-center justify-center w-14 shrink-0 relative z-10">
+          <div className="w-9 h-9 rounded-full bg-[var(--bg)] border border-[var(--border)] flex items-center justify-center text-[11px] font-mono text-[var(--muted)] font-semibold">
+            vs
           </div>
         </div>
 
-        <Panel name="Jogador 2" linesShown={linesB} done={doneB} isWinner={winner === "b"} accent="var(--accent-2)" />
+        <Panel name="Jogador 2" linesShown={linesB} done={doneB} isWinner={winner === "b"} accent="#2fe6a6" />
       </div>
     </div>
   );

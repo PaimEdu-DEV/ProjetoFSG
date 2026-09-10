@@ -35,6 +35,34 @@
   --cs: #9b4f96;
 }
 
+/* Scoped light theme for the marketing landing page — the rest of the
+   product (exercise editor, battle room) stays on the dark tokens above. */
+.theme-light {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f4f4f6;
+  --border: #e6e6ea;
+  --text: #0e0e12;
+  --muted: #6b6c76;
+  --accent: #3c46e0;
+  --accent-soft: #3c46e00f;
+  --accent-2: #0a8f63;
+  --accent-2-soft: #0a8f6314;
+}
+
+/* Fixed-dark "code editor" chrome used inside preview mockups, independent
+   of page theme — an editor window is dark regardless of the page around it. */
+.editor-chrome {
+  --ed-bg: #0b0c12;
+  --ed-surface-2: #14151d;
+  --ed-border: #23242e;
+  --ed-text: #f2f3f7;
+  --ed-muted: #888c9e;
+  --ed-accent: #6c77ff;
+  --ed-accent-2: #2fe6a6;
+}
+
 * {
   box-sizing: border-box;
 }
