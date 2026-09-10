@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
-import Home from "./pages/Home";
+import Landing from "./pages/Landing";
 import LearnLanguageSelect from "./pages/LearnLanguageSelect";
 import LearnDifficultySelect from "./pages/LearnDifficultySelect";
 import LearnExerciseList from "./pages/LearnExerciseList";
@@ -13,8 +13,8 @@ import BattleRoom from "./pages/BattleRoom";
 export default function App() {
   return (
     <Routes>
+      <Route path="/" element={<Landing />} />
       <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
         <Route path="/aprender" element={<LearnLanguageSelect />} />
         <Route path="/aprender/:language" element={<LearnDifficultySelect />} />
         <Route path="/aprender/:language/:difficulty" element={<LearnExerciseList />} />

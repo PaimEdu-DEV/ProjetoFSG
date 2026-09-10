@@ -9,7 +9,7 @@ export default function Layout() {
         <Outlet />
       </div>
       <footer className="text-center text-xs text-[var(--muted)] py-6">
-        Programação Didática — aprenda Python, JavaScript e C# jogando.
+        DevCore — aprenda Python, JavaScript e C# jogando.
       </footer>
     </div>
   );

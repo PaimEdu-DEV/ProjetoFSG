@@ -1,16 +1,33 @@
 @import "tailwindcss";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", ui-monospace, Consolas, monospace;
+}
 
 :root {
   color-scheme: dark;
-  --bg: #0a0e1a;
-  --surface: #121829;
-  --surface-2: #1a2338;
-  --border: #2a3654;
-  --text: #e7ebf5;
-  --muted: #8b96b3;
-  --accent: #7c5cff;
-  --accent-2: #22d3ee;
-  --success: #22c55e;
+  --bg: #0a0a0f;
+  --surface: #121319;
+  --surface-2: #191a22;
+  --border: #26272f;
+  --text: #f5f6fa;
+  --muted: #9498ac;
+  --accent: #4f5bff;
+  --accent-soft: #4f5bff26;
+  --accent-2: #2fe6a6;
+  --accent-2-soft: #2fe6a626;
+  --success: #2fe6a6;
   --danger: #f0475a;
   --warning: #f5a623;
   --py: #3776ab;
@@ -31,11 +48,22 @@ body,
 body {
   margin: 0;
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(124, 92, 255, 0.15), transparent),
-    radial-gradient(1000px 500px at 110% 10%, rgba(34, 211, 238, 0.1), transparent),
+    radial-gradient(1200px 600px at 10% -10%, rgba(79, 91, 255, 0.16), transparent),
+    radial-gradient(1000px 500px at 110% 10%, rgba(47, 230, 166, 0.08), transparent),
     var(--bg);
   color: var(--text);
-  font-family: "Segoe UI", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 ::selection {
@@ -65,10 +93,10 @@ body {
 @keyframes pulse-glow {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(124, 92, 255, 0.5);
+    box-shadow: 0 0 0 0 rgba(79, 91, 255, 0.5);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(124, 92, 255, 0);
+    box-shadow: 0 0 0 10px rgba(79, 91, 255, 0);
   }
 }
 .animate-pulse-glow {

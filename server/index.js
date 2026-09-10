@@ -15,7 +15,7 @@ app.use(express.json({ limit: "256kb" }));
 app.use("/api", apiRouter);
 
 app.get("/", (req, res) => {
-  res.send("Programação Didática — API rodando.");
+  res.send("DevCore — API rodando.");
 });
 
 const server = http.createServer(app);
@@ -26,5 +26,5 @@ const io = new Server(server, {
 attachSocketHandlers(io);
 
 server.listen(PORT, () => {
-  console.log(`[servidor] Programação Didática ouvindo em http://localhost:${PORT}`);
+  console.log(`[servidor] DevCore ouvindo em http://localhost:${PORT}`);
 });
