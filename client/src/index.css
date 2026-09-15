@@ -16,28 +16,6 @@
 }
 
 :root {
-  color-scheme: dark;
-  --bg: #0a0a0f;
-  --surface: #121319;
-  --surface-2: #191a22;
-  --border: #26272f;
-  --text: #f5f6fa;
-  --muted: #9498ac;
-  --accent: #4f5bff;
-  --accent-soft: #4f5bff26;
-  --accent-2: #2fe6a6;
-  --accent-2-soft: #2fe6a626;
-  --success: #2fe6a6;
-  --danger: #f0475a;
-  --warning: #f5a623;
-  --py: #3776ab;
-  --js: #f0d626;
-  --cs: #9b4f96;
-}
-
-/* Scoped light theme for the marketing landing page — the rest of the
-   product (exercise editor, battle room) stays on the dark tokens above. */
-.theme-light {
   color-scheme: light;
   --bg: #ffffff;
   --surface: #ffffff;
@@ -49,10 +27,20 @@
   --accent-soft: #3c46e00f;
   --accent-2: #0a8f63;
   --accent-2-soft: #0a8f6314;
+  --success: #0a8f63;
+  --success-soft: #0a8f6314;
+  --danger: #d6293e;
+  --danger-soft: #d6293e14;
+  --warning: #b1650c;
+  --warning-soft: #b1650c14;
+  --py: #3776ab;
+  --js: #b58900;
+  --cs: #7c3f9e;
 }
 
-/* Fixed-dark "code editor" chrome used inside preview mockups, independent
-   of page theme — an editor window is dark regardless of the page around it. */
+/* Fixed-dark "code editor" chrome used inside preview mockups and the real
+   code editor, independent of page theme — an editor window is dark
+   regardless of the light page/app chrome around it. */
 .editor-chrome {
   --ed-bg: #0b0c12;
   --ed-surface-2: #14151d;
@@ -75,10 +63,7 @@ body,
 
 body {
   margin: 0;
-  background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(79, 91, 255, 0.16), transparent),
-    radial-gradient(1000px 500px at 110% 10%, rgba(47, 230, 166, 0.08), transparent),
-    var(--bg);
+  background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useProgress } from "../context/ProgressContext";
 import { getSocket } from "../socket";
+import Reveal from "../components/Reveal";
 
 export default function CompetitiveJoin() {
   const { nickname: savedNickname, setNickname: saveNickname } = useProgress();
@@ -50,9 +51,9 @@ export default function CompetitiveJoin() {
   }
 
   return (
-    <form onSubmit={handleJoin} className="max-w-md mx-auto flex flex-col gap-6">
+    <Reveal as="form" onSubmit={handleJoin} className="max-w-md mx-auto flex flex-col gap-6">
       <div className="text-center">
-        <h1 className="text-3xl font-extrabold">Entrar em um X1</h1>
+        <h1 className="font-display font-semibold text-3xl tracking-tight">Entrar em um X1</h1>
         <p className="text-[var(--muted)] mt-2">Peça o código de 5 caracteres para seu amigo.</p>
       </div>
 
@@ -87,6 +88,6 @@ export default function CompetitiveJoin() {
       >
         {loading ? "Entrando…" : "Entrar na sala"}
       </button>
-    </form>
+    </Reveal>
   );
 }

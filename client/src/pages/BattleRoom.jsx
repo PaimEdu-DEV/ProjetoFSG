@@ -109,7 +109,7 @@ export default function BattleRoom() {
   if (room.status === "waiting") {
     return (
       <div className="max-w-md mx-auto flex flex-col items-center gap-6 text-center py-10">
-        <h1 className="text-2xl font-extrabold">Aguardando oponente…</h1>
+        <h1 className="font-display font-semibold text-2xl tracking-tight">Aguardando oponente…</h1>
         <p className="text-[var(--muted)]">Envie este código para o seu amigo:</p>
         <button
           onClick={copyCode}
@@ -140,7 +140,7 @@ export default function BattleRoom() {
     return (
       <div className="max-w-md mx-auto flex flex-col items-center gap-6 text-center py-10 animate-pop">
         <div className="text-7xl">{won ? "🏆" : "💀"}</div>
-        <h1 className="text-3xl font-extrabold">
+        <h1 className="font-display font-semibold text-3xl tracking-tight">
           {won ? "Você venceu!" : `${matchOver.winner} venceu!`}
         </h1>
         <p className="text-[var(--muted)]">

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { Check } from "lucide-react";
 import { getExercises } from "../api";
 import { useMeta } from "../hooks/useMeta";
 import { useProgress } from "../context/ProgressContext";
+import { RevealGroup, RevealItem } from "../components/Reveal";
 
 export default function LearnExerciseList() {
   const { language, difficulty } = useParams();
@@ -27,7 +29,7 @@ export default function LearnExerciseList() {
     <div className="flex flex-col gap-8">
       <div className="text-center">
         <div className="text-3xl mb-2">{lang?.icon}</div>
-        <h1 className="text-3xl font-extrabold">
+        <h1 className="font-display font-semibold text-3xl tracking-tight">
           {lang?.label} · {diff?.label}
         </h1>
         {exercises && (
@@ -37,9 +39,7 @@ export default function LearnExerciseList() {
         )}
       </div>
 
-      {error && (
-        <div className="text-center text-[var(--danger)]">{error}</div>
-      )}
+      {error && <div className="text-center text-[var(--danger)]">{error}</div>}
 
       {!exercises && !error && (
         <div className="flex flex-col gap-4">
@@ -50,40 +50,40 @@ export default function LearnExerciseList() {
       )}
 
       {exercises && (
-        <div className="flex flex-col gap-4 max-w-2xl mx-auto w-full">
+        <RevealGroup className="flex flex-col gap-4 max-w-2xl mx-auto w-full">
           {exercises.map((ex, i) => {
             const done = isCompleted(ex.id);
             return (
-              <Link
-                key={ex.id}
-                to={`/aprender/${language}/${difficulty}/${ex.id}`}
-                className={`animate-float-in flex items-center gap-4 rounded-2xl border p-5 transition-all hover:-translate-y-0.5 ${
-                  done
-                    ? "border-[var(--success)]/50 bg-[var(--success)]/5"
-                    : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]"
-                }`}
-                style={{ animationDelay: `${i * 80}ms` }}
-              >
-                <div
-                  className={`w-10 h-10 shrink-0 rounded-full flex items-center justify-center font-bold ${
+              <RevealItem key={ex.id}>
+                <Link
+                  to={`/aprender/${language}/${difficulty}/${ex.id}`}
+                  className={`flex items-center gap-4 rounded-2xl border p-5 transition-all hover:-translate-y-0.5 ${
                     done
-                      ? "bg-[var(--success)] text-white"
-                      : "bg-[var(--surface-2)] text-[var(--muted)] border border-[var(--border)]"
+                      ? "border-[var(--success)]/40 bg-[var(--success-soft)]"
+                      : "border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]"
                   }`}
                 >
-                  {done ? "✓" : i + 1}
-                </div>
-                <div className="flex-1 text-left">
-                  <h3 className="font-semibold">{ex.title}</h3>
-                  <p className="text-xs text-[var(--muted)] mt-0.5">
-                    {ex.mode === "stdout" ? "Saída no console" : "Implementação de função"}
-                  </p>
-                </div>
-                <span className="text-xs font-semibold text-[var(--accent-2)]">+{ex.xp} XP</span>
-              </Link>
+                  <div
+                    className={`w-10 h-10 shrink-0 rounded-full flex items-center justify-center font-bold ${
+                      done
+                        ? "bg-[var(--success)] text-white"
+                        : "bg-[var(--surface-2)] text-[var(--muted)] border border-[var(--border)]"
+                    }`}
+                  >
+                    {done ? <Check size={16} /> : i + 1}
+                  </div>
+                  <div className="flex-1 text-left">
+                    <h3 className="font-semibold">{ex.title}</h3>
+                    <p className="text-xs text-[var(--muted)] mt-0.5">
+                      {ex.mode === "stdout" ? "Saída no console" : "Implementação de função"}
+                    </p>
+                  </div>
+                  <span className="text-xs font-semibold text-[var(--accent-2)]">+{ex.xp} XP</span>
+                </Link>
+              </RevealItem>
             );
           })}
-        </div>
+        </RevealGroup>
       )}
     </div>
   );

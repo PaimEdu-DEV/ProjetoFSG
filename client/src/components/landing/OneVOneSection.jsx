@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import Reveal, { RevealGroup, RevealItem } from "./Reveal";
+import Reveal, { RevealGroup, RevealItem } from "../Reveal";
 import CodeRacePreview from "./CodeRacePreview";
 
 const STEPS = [

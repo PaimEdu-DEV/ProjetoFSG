@@ -10,7 +10,7 @@ import LandingFooter from "../components/landing/LandingFooter";
 export default function Landing() {
   return (
     <MotionConfig reducedMotion="user">
-      <div className="theme-light min-h-full bg-[var(--bg)] text-[var(--text)]">
+      <div className="min-h-full bg-[var(--bg)] text-[var(--text)]">
         <LandingNav />
         <main>
           <Hero />

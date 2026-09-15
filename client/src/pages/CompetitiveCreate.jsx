@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useMeta } from "../hooks/useMeta";
 import { useProgress } from "../context/ProgressContext";
 import { getSocket } from "../socket";
+import Reveal from "../components/Reveal";
 
 const LANG_ORDER = ["python", "javascript", "csharp"];
 const DIFF_ORDER = ["iniciante", "intermediario", "avancado"];
@@ -51,9 +52,9 @@ export default function CompetitiveCreate() {
   }
 
   return (
-    <form onSubmit={handleCreate} className="max-w-xl mx-auto flex flex-col gap-6">
+    <Reveal as="form" onSubmit={handleCreate} className="max-w-xl mx-auto flex flex-col gap-6">
       <div className="text-center">
-        <h1 className="text-3xl font-extrabold">Criar X1</h1>
+        <h1 className="font-display font-semibold text-3xl tracking-tight">Criar X1</h1>
         <p className="text-[var(--muted)] mt-2">Configure a sala e gere o código para seu amigo.</p>
       </div>
 
@@ -126,6 +127,6 @@ export default function CompetitiveCreate() {
       >
         {loading ? "Criando sala…" : "Criar sala e gerar código"}
       </button>
-    </form>
+    </Reveal>
   );
 }

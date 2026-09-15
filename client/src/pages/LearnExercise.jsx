@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { BookOpen, Lightbulb, CheckCheck, ArrowRight } from "lucide-react";
 import { getExercise, getExercises, executeCode } from "../api";
 import { useProgress } from "../context/ProgressContext";
 import CodeEditor from "../components/CodeEditor";
 import OutputPanel from "../components/OutputPanel";
+import Reveal from "../components/Reveal";
 
 function draftKey(id) {
   return `pd_draft_${id}`;
@@ -87,25 +89,27 @@ export default function LearnExercise() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-start justify-between gap-4 flex-wrap">
+      <Reveal as="div" className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <p className="text-xs uppercase tracking-wide text-[var(--muted)]">
             {language} · {difficulty}
           </p>
-          <h1 className="text-2xl font-extrabold flex items-center gap-2">
+          <h1 className="font-display font-semibold text-2xl tracking-tight flex items-center gap-2">
             {exercise.title}
-            {alreadyDone && <span className="text-[var(--success)] text-lg">✓</span>}
+            {alreadyDone && <CheckCheck size={20} className="text-[var(--success)]" />}
           </h1>
         </div>
         <span className="text-sm font-semibold text-[var(--accent-2)] bg-[var(--surface-2)] border border-[var(--border)] px-3 py-1.5 rounded-full">
           +{exercise.xp} XP
         </span>
-      </div>
+      </Reveal>
 
       <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] gap-6">
-        <div className="flex flex-col gap-4">
+        <Reveal as="div" delay={0.05} className="flex flex-col gap-4">
           <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
-            <h2 className="font-bold mb-3 text-[var(--accent)]">📖 Teoria</h2>
+            <h2 className="font-bold mb-3 text-[var(--accent)] flex items-center gap-2">
+              <BookOpen size={16} /> Teoria
+            </h2>
             <div className="text-sm leading-relaxed text-[var(--text)] whitespace-pre-wrap font-mono-code">
               {exercise.theory}
             </div>
@@ -132,10 +136,10 @@ export default function LearnExercise() {
                 onClick={() => setShowHints((s) => !s)}
                 className="font-bold text-sm text-[var(--warning)] flex items-center gap-2"
               >
-                💡 {showHints ? "Esconder dicas" : "Mostrar dicas"}
+                <Lightbulb size={16} /> {showHints ? "Esconder dicas" : "Mostrar dicas"}
               </button>
               {showHints && (
-                <ul className="mt-3 space-y-2 text-sm text-[var(--muted)] list-disc list-inside">
+                <ul className="mt-3 space-y-2 text-sm text-[var(--muted)] list-disc list-inside animate-float-in">
                   {exercise.hints.map((h, i) => (
                     <li key={i}>{h}</li>
                   ))}
@@ -143,9 +147,9 @@ export default function LearnExercise() {
               )}
             </div>
           )}
-        </div>
+        </Reveal>
 
-        <div className="flex flex-col gap-4">
+        <Reveal as="div" delay={0.1} className="flex flex-col gap-4">
           <CodeEditor language={exercise.language} value={code} onChange={setCode} />
 
           <div className="flex items-center gap-3">
@@ -167,7 +171,7 @@ export default function LearnExercise() {
           <OutputPanel result={result} running={running} />
 
           {result?.success && (
-            <div className="animate-pop rounded-2xl border border-[var(--success)]/50 bg-[var(--success)]/10 p-5 flex items-center justify-between flex-wrap gap-3">
+            <div className="animate-pop rounded-2xl border border-[var(--success)]/40 bg-[var(--success-soft)] p-5 flex items-center justify-between flex-wrap gap-3">
               <div>
                 <p className="font-bold text-[var(--success)]">
                   {justCompleted ? `+${exercise.xp} XP conquistados! 🎉` : "Exercício já concluído antes."}
@@ -177,9 +181,9 @@ export default function LearnExercise() {
               {nextExercise ? (
                 <Link
                   to={`/aprender/${language}/${difficulty}/${nextExercise.id}`}
-                  className="bg-[var(--success)] text-white font-semibold px-5 py-2.5 rounded-xl hover:brightness-110 transition-all"
+                  className="inline-flex items-center gap-1.5 bg-[var(--success)] text-white font-semibold px-5 py-2.5 rounded-xl hover:brightness-110 transition-all"
                 >
-                  Próximo exercício →
+                  Próximo exercício <ArrowRight size={16} />
                 </Link>
               ) : (
                 <button
@@ -191,7 +195,7 @@ export default function LearnExercise() {
               )}
             </div>
           )}
-        </div>
+        </Reveal>
       </div>
     </div>
   );

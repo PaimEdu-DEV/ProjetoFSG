@@ -1,4 +1,4 @@
-import Reveal, { RevealGroup, RevealItem } from "./Reveal";
+import Reveal, { RevealGroup, RevealItem } from "../Reveal";
 
 const POINTS = [
   {

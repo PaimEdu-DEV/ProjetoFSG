@@ -58,6 +58,11 @@ export default function OutputPanel({ result, running }) {
                     {t.error ? t.error : formatValue(t.actual)}
                   </span>
                 </div>
+                {t.note && (
+                  <div className="mt-1.5 text-[var(--warning)] font-sans not-italic">
+                    💡 {t.note}
+                  </div>
+                )}
               </div>
             )}
           </div>

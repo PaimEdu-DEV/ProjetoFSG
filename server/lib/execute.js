@@ -119,6 +119,19 @@ function deepEqual(a, b) {
   return JSON.stringify(a) === JSON.stringify(b);
 }
 
+function stdoutMismatchNote(actual, expected) {
+  if (actual.toLowerCase() === expected.toLowerCase()) {
+    return "Quase lá! O texto é o mesmo, mas maiúsculas e minúsculas são diferentes — para o computador, \"Ola\" e \"ola\" não são a mesma coisa.";
+  }
+  const stripPunctuation = (s) => s.replace(/[.,!?;:]/g, "").trim();
+  if (
+    stripPunctuation(actual).toLowerCase() === stripPunctuation(expected).toLowerCase()
+  ) {
+    return "Quase lá! Confira a pontuação (vírgulas, pontos, exclamações) — ela também faz parte do texto esperado.";
+  }
+  return undefined;
+}
+
 function sanitizeCsharpText(text) {
   if (!text) return text;
   return text.replace(
@@ -182,6 +195,7 @@ async function executeSubmission(exerciseId, code) {
           passed,
           expected,
           actual,
+          note: passed ? undefined : stdoutMismatchNote(actual, expected),
         },
       ],
     };

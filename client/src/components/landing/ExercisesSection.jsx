@@ -1,4 +1,4 @@
-import Reveal from "./Reveal";
+import Reveal from "../Reveal";
 import Parallax from "./Parallax";
 import ExercisePreviewMock from "./ExercisePreviewMock";
 
